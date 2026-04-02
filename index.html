@@ -6,6 +6,8 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <h2 id="userEmail" style="padding-right: 20px;"></h2>
+  <button onclick="logout()" style="margin-right: 20px;">Logout</button>
 
   <div class="container">
     <h1>🎮 Game Zone</h1>
@@ -33,6 +35,18 @@
 
     </div>
   </div>
+
+<script type="module">
+  import { auth } from "./app.js";
+
+  auth.onAuthStateChanged(user => {
+    if (!user) {
+      window.location.href = "login.html";
+    } else {
+      document.getElementById("userEmail").innerText = "Hello, " + user.email;
+    }
+  });
+</script>
 
   <script src="script.js"></script>
 
